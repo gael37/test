@@ -18,3 +18,5 @@ class User(AbstractUser):
     postcode = models.CharField(max_length=50)
     image = models.CharField(
         max_length=300, default=None, blank=True, null=True)
+    likes = models.CharField(
+        max_length=1000, default=None, blank=True, null=True)

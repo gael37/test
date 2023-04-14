@@ -3,7 +3,7 @@ from django.db import models
 
 class Comment(models.Model):
     #  TextField is same as CharField but it displays as a textarea in the admin system
-    text = models.TextField(max_length=300)
+    text = models.CharField(max_length=300)
     # auto_now_add on a DateTimeField will automatically add a timestamp to your record when it's created. We don't have to populate this ourselves in the request
     created_at = models.DateTimeField(auto_now_add=True)
     # product = models.ForeignKey(
@@ -14,12 +14,12 @@ class Comment(models.Model):
     # )
     commentOwner = models.ForeignKey(
         'jwt_auth.User',
-        related_name='commentsSent',
+        related_name='comments',
         on_delete=models.CASCADE
     )
-    productOwner = models.ForeignKey(
-        'jwt_auth.User',
-        related_name='commentsReceived',
+    productReviewed = models.ForeignKey(
+        'products.Product',
+        related_name='comments',
         on_delete=models.CASCADE
     )
 
