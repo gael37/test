@@ -9,7 +9,7 @@ import { getToken } from '../../../helpers/auth'
 
 
 // Custom Components
-import ProductForm from './ProductForm'
+import ProductFormNew from './ProductFormNew'
 
 
 const ProductNew = () => {
@@ -62,7 +62,7 @@ const ProductNew = () => {
   // ! JSX
   return (
     <main className="form-page">
-      <ProductForm
+      <ProductFormNew
         handleSubmit={handleSubmit}
         formFields={formFields}
         setFormFields={setFormFields}

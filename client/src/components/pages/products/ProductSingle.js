@@ -179,23 +179,23 @@ const ProductSingle = () => {
   //   }
   // }
 
-  // const handleDelete = async (e) => {
-  //   try {
-  //     const { data } = await axios.delete(`/api/products/${productId}/`, {
-  //       headers: {
-  //         Authorization: `Bearer ${getToken()}`,
-  //       },
-  //     })
-  //     setMessageField({
-  //       text: 'Ad deleted!',
-  //     })
-  //     navigate('/delete-product')
-  //     console.log('delete SUCCESS ->', data)
-  //   } catch (err) {
-  //     console.log('review FAIL ->', err)
-  //     setErrors(err.response.data)
-  //   }
-  // }
+  const handleDelete = async (e) => {
+    try {
+      const { data } = await axios.delete(`/api/products/${productId}/`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      })
+      // setMessageField({
+      //   text: 'Ad deleted!',
+      // })
+      navigate('/delete-product')
+      console.log('delete SUCCESS ->', data)
+    } catch (err) {
+      console.log('review FAIL ->', err)
+      setErrors(err.response.data)
+    }
+  }
 
   const postedAd = () => {
     if (product.owner.id === currentUserId) {
@@ -299,7 +299,7 @@ const ProductSingle = () => {
                     {postedAd() ?
                       <div className='flex-edit-delete'>
                         <Link className="btn-post-edit" as={Link} to={`/edit-product/${product.id}`}>Edit Ad</Link>
-                        <button className="btn-post-delete" >DELETE AD</button>
+                        <button onClick={handleDelete} className="btn-post-delete" >DELETE AD</button>
                       </div>
                       :
                       <>

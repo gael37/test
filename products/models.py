@@ -6,7 +6,7 @@ import datetime
 class Product(models.Model):
     description = models.TextField(max_length=1000)
     price = models.CharField(max_length=15)
-    image = models.CharField(max_length=300)
+    image = models.CharField(max_length=10000)
     created_at = models.DateTimeField(
         auto_now_add=True)
     dimensions = models.CharField(

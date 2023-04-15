@@ -1,7 +1,7 @@
 // React Components
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import ImageUpload from '../../ImageUpload'
+import ImageUpload from '../../ImageUploadBackUp'
 // Imports
 import axios from 'axios'
 

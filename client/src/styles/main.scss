@@ -1675,12 +1675,15 @@ h1 {
 }
 
 .top-image {
-  width: 400px height400px
+  width: 600px;
+  height: 600px
 }
 
 .bottom-images {
   width: 50px;
-  height: 50px
+  height: 50px;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .bottom-images-flex {
@@ -1690,4 +1693,45 @@ h1 {
 
 .bigger {
   transform: scale(1.2);
+}
+
+input,
+select {
+  width: 300px;
+}
+
+.post-cat {
+  width: 300px;
+}
+
+.div-form {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.existing-images {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+}
+
+.existing-image {
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+}
+
+.flex-images-pre {
+  display: flex;
+  width: 300px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.images {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 500px;
 }

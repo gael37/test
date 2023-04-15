@@ -23,6 +23,8 @@ function App() {
   // state of the selected and the searched (used in the NavigationBar and the Home components)
   const [selected, setSelected] = useState('All')
   const [typed, setTyped] = useState('')
+  const [selectedImages, setSelectedImages] = useState([])
+
 
   return (
     <BrowserRouter>
@@ -37,7 +39,7 @@ function App() {
         <Route path="/products/new" element={<ProductNew />} />
         <Route path="/products/:productId" element={<ProductSingle />} />
         <Route path="/products/:productId/:postcodeUser" element={<ProductSingleUser />} />
-        <Route path="/edit-product/:productId" element={<EditProduct />} />
+        <Route path="/edit-product/:productId" element={<EditProduct selectedImages={selectedImages} setSelectedImages={setSelectedImages} />} />
         <Route path="/delete-product" element={<DeleteProduct />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

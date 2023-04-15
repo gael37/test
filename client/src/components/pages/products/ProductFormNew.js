@@ -2,14 +2,12 @@
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import ImagesUploadTest from '../../ImagesUploadTest'
-import ImagesUpload from '../../ImagesUploadTest'
-import ImageUpload from '../../ImagesUploadTest'
 
 import React, { useEffect } from 'react'
 import Select from 'react-select'
 import { useState } from 'react'
 
-const ProductForm = ({ handleSubmit, formFields, setFormFields, errors, setErrors, formName }) => {
+const ProductFormNew = ({ handleSubmit, formFields, setFormFields, errors, setErrors, formName }) => {
 
   const handleChange = (e) => {
     console.log(`${e.target.name}: ${e.target.value}`)
@@ -95,30 +93,6 @@ const ProductForm = ({ handleSubmit, formFields, setFormFields, errors, setError
               value={formFields.brand}
               placeholder="Brand"
             />
-            <label htmlFor="name">Dimensions</label>
-            <input
-              type="text"
-              name="dimensions"
-              onChange={handleChange}
-              value={formFields.dimensions}
-              placeholder="Dimensions"
-            />
-            <label htmlFor="name">Weight</label>
-            <input
-              type="text"
-              name="weight"
-              onChange={handleChange}
-              value={formFields.weight}
-              placeholder="Weight"
-            />
-            <label htmlFor="name">About</label>
-            <input
-              type="text"
-              name="about"
-              onChange={handleChange}
-              value={formFields.about}
-              placeholder="About"
-            />
             <label htmlFor="name">Price<span>*</span></label>
             <input
               type="text"
@@ -135,7 +109,7 @@ const ProductForm = ({ handleSubmit, formFields, setFormFields, errors, setError
             {errors && errors.description && <small className='text-danger'>{errors.description}</small>}
             {/* Image */}
             <label>Upload an image for your ad:</label>
-            <ImageUpload
+            <ImagesUploadTest
               formFields={formFields}
               setFormFields={setFormFields}
             />
@@ -160,4 +134,4 @@ const ProductForm = ({ handleSubmit, formFields, setFormFields, errors, setError
   )
 }
 
-export default ProductForm
+export default ProductFormNew
