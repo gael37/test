@@ -9,6 +9,9 @@ import axios from 'axios'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 
+import { getToken, getPayload } from '../../../helpers/auth'
+
+
 const Register = () => {
 
   // ! Location Variables
@@ -22,16 +25,22 @@ const Register = () => {
     password: '',
     password_confirmation: '',
     postcode: '',
+    image: '',
   })
 
-  const [error, setError] = useState('')
+  const [errors, setErrors] = useState('')
   const [passError, setPassError] = useState('')
+  const [selectedImages, setSelectedImages] = useState([])
+
+  let imagesString = []
+
 
   // ! Executions
 
   // Submitting the form
   const handleSubmit = async (e) => {
     e.preventDefault()
+    imagesString = selectedImages.join(' ')
     try {
       if (formFields.password !== formFields.password_confirmation) {
         setPassError('Passwords do not match!')
@@ -40,18 +49,18 @@ const Register = () => {
         setPassError('Password too short! It must be at least 8 characters long.')
       }
       // axios.post() is used to send a POST request - POST requests are used to submit new information
-      await axios.post('/api/auth/register/', formFields)
+      await axios.post('/api/auth/register/', { ...formFields, image: imagesString })
       console.log('Register successful')
       // We can then use that function, passing in the path we want to follow, and it will redirect us
       navigate('/login')
     } catch (err) {
       if (formFields.password !== formFields.password_confirmation) {
-        setError({
+        setErrors({
           message: 'Passwords do not match',
         })
       }
       console.log(err.response.data.message)
-      setError(err.response.data.message)
+      setErrors(err.response.data.message)
     }
   }
 
@@ -65,7 +74,48 @@ const Register = () => {
     setFormFields(updatedFormFields)
 
     // Setting errors back to empty string if we type into an input and an error is present
-    if (error) setError('')
+    if (errors) setErrors('')
+  }
+
+  const onSelectFile = async (event) => {
+    // let imageString = ''
+    const imagesArray = []
+    console.log(event.target.files)
+    for (let i = 0; i < event.target.files.length; i++) {
+      try {
+        console.log('formFields before uploads', formFields)
+        // File field on the formData we're creating
+
+        const formData = new FormData()
+        formData.append('file', event.target.files[i])
+        console.log('formData composed of all files', formData)
+        formData.append('upload_preset', process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET)
+        const { data } = await axios.post(process.env.REACT_APP_CLOUDINARY_URL, formData)
+        console.log('current url', data.secure_url)
+        imagesArray.push(data.secure_url)
+        // imageString = imageString + ' ' + data.secure_url
+        // console.log('imageString', imageString)
+        // Upload preset
+        // Sending data as an axios request to the cloudinary API
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    const selectedFiles = event.target.files
+    const selectedFilesArray = Array.from(selectedFiles)
+
+    // const imagesArray = selectedFilesArray.map((file) => {
+    //   return URL.createObjectURL(file)
+    // })
+
+    setSelectedImages((previousImages) => previousImages.concat(imagesArray))
+    console.log('images array log :', imagesArray)
+    // setFormFields({ ...formFields, images: imageString })
+  }
+
+  function deleteHandler(image) {
+    setSelectedImages(selectedImages.filter((e) => e !== image))
+    // URL.revokeObjectURL(image)
   }
 
   return (
@@ -108,10 +158,49 @@ const Register = () => {
                 />
                 {/* Image */}
                 <label>Upload your profile picture:</label>
-                <ImageUpload
-                  formFields={formFields}
-                  setFormFields={setFormFields}
+                <input
+                  type="file"
+                  name="images"
+                  onChange={onSelectFile}
+                  multiple
+                  accept="image/png , image/jpeg, image/webp"
                 />
+                {selectedImages.length > 0 &&
+                  (selectedImages.length > 1 ? (
+                    <p className="error">
+                      You can&apos;t upload more than one image! <br />
+                      <span>
+                        please delete <b> {selectedImages.length - 1} </b> of them{' '}
+                      </span>
+                    </p>
+                  ) : (
+                    <p>Image uploaded! ✅</p>
+                  ))}
+
+                <div className="images">
+                  {selectedImages &&
+                    selectedImages.map((image, index) => {
+                      return (
+                        <div key={image} className="image">
+                          <img src={image} height="50" width="50" alt="upload" />
+                          <button onClick={() => deleteHandler(image)}>
+                            delete image
+                          </button>
+                          <p>{index + 1}</p>
+                        </div>
+                      )
+                    })}
+                </div>
+                {/* Generic Message Error */}
+                {errors && errors.message && <small className='text-danger'>{errors.message}</small>}
+                {/* Upload status */}
+                {selectedImages.length > 0 &&
+                  (selectedImages.length > 1 ? (
+                    <p className="error" >Image upload status: Oops! Looks like you have selected too many images!</p>
+                  ) : (
+                    <p className="error" >Image upload status: Image succesfully uploaded! ✅</p>
+                  ))}
+
                 {/* Password */}
                 <label htmlFor="password">Password <span>*</span></label>
                 <input
@@ -133,18 +222,26 @@ const Register = () => {
                   required
                 />
                 {/* Error Message */}
-                {error && <small className='text-danger'>{error}</small>
+                {errors && <small className='text-danger'>{errors}</small>
                 }
                 {passError && <small className='text-danger'>{passError}</small>
                 }
                 {/* Submit */}
-                <button className='btn-form'>Register</button>
+                {selectedImages.length > 0 &&
+                  (selectedImages.length > 1 ? (
+                    <>
+                      <p className="error" >Keep only one image if you wan&apos;t to create an account!</p>
+                      <button className='btn-form' >Register greyed out</button>
+                    </>
+                  ) : (
+                    <button className='btn-form' >Register</button>
+                  ))}
               </form>
             </div>
           </Row>
         </Container>
       </main>
-    </div>
+    </div >
   )
 }
 

@@ -61,29 +61,29 @@ function Navigation({ selected, typed, setSelected, setTyped }) {
               </NavDropdown>
             </Nav>
             <div className='flex-search' id='top-search'>
-              <select onChange={handleSelect} name="filter-style" className="select-small" value={selected}>
-                <option value="0">All</option>
-                <option value="1">Baby</option>
-                <option value="2">Beauty</option>
-                <option value="3">Books</option>
-                <option value="4">Fashion</option>
-                <option value="5">Car & Motorbike</option>
-                <option value="6">CDs & Vinyl</option>
-                <option value="7">Computers & Accessories</option>
-                <option value="8">DVD & Blu-ray</option>
-                <option value="9">Electronics & Photo</option>
-                <option value="10">Garden & Outdoors</option>
-                <option value="11">Health & Personal care</option>
-                <option value="12">Home & Kitchen</option>
-                <option value="13">Industrial & Scientific</option>
-                <option value="14">Large Appliances</option>
-                <option value="15">Luggage & Travel Gear</option>
-                <option value="16">Musical Instruments</option>
-                <option value="17">Consoles & Video Games</option>
-                <option value="18">Pet Supplies</option>
-                <option value="19">Sports & Outdoors</option>
-                <option value="20">Stationary & Office Supplies</option>
-                <option value="21">Toys & Games</option>
+              <select onChange={handleSelect} name="filter-style" className="select-nav select-small" value={selected}>
+                <option value="All">All</option>
+                <option value="Baby">Baby</option>
+                <option value="Beauty">Beauty</option>
+                <option value="Books">Books</option>
+                <option value="Fashion">Fashion</option>
+                <option value="Car & Motorbike">Car & Motorbike</option>
+                <option value="CDs & Vinyl">CDs & Vinyl</option>
+                <option value="Computers & Accessories">Computers & Accessories</option>
+                <option value="DVD & Blu-ray">DVD & Blu-ray</option>
+                <option value="Electronics & Photo">Electronics & Photo</option>
+                <option value="Garden & Outdoors">Garden & Outdoors</option>
+                <option value="Health & Personal care">Health & Personal care</option>
+                <option value="Home & Kitchen">Home & Kitchen</option>
+                <option value="Industrial & Scientific">Industrial & Scientific</option>
+                <option value="Large Appliances">Large Appliances</option>
+                <option value="Luggage & Travel Gear">Luggage & Travel Gear</option>
+                <option value="Musical Instruments">Musical Instruments</option>
+                <option value="Consoles & Video Games">Consoles & Video Games</option>
+                <option value="Pet Supplies">Pet Supplies</option>
+                <option value="Sports & Outdoors">Sports & Outdoors</option>
+                <option value="Stationary & Office Supplies">Stationary & Office Supplies</option>
+                <option value="Toys & Games">Toys & Games</option>
               </select>
               <input className='input-nav' type="text" placeholder='search' value={typed} onChange={handleChange} />
             </div>
@@ -116,29 +116,29 @@ function Navigation({ selected, typed, setSelected, setTyped }) {
           </Navbar >
           <div id='nav-bottom'>
             <div className='flex-search'>
-              <select onChange={handleSelect} name="filter-style" className="select-small" value={selected}>
-                <option value="0">All</option>
-                <option value="1">Baby</option>
-                <option value="2">Beauty</option>
-                <option value="3">Books</option>
-                <option value="4">Fashion</option>
-                <option value="5">Car & Motorbike</option>
-                <option value="6">CDs & Vinyl</option>
-                <option value="7">Computers & Accessories</option>
-                <option value="8">DVD & Blu-ray</option>
-                <option value="9">Electronics & Photo</option>
-                <option value="10">Garden & Outdoors</option>
-                <option value="11">Health & Personal care</option>
-                <option value="12">Home & Kitchen</option>
-                <option value="13">Industrial & Scientific</option>
-                <option value="14">Large Appliances</option>
-                <option value="15">Luggage & Travel Gear</option>
-                <option value="16">Musical Instruments</option>
-                <option value="17">Consoles & Video Games</option>
-                <option value="18">Pet Supplies</option>
-                <option value="19">Sports & Outdoors</option>
-                <option value="20">Stationary & Office Supplies</option>
-                <option value="21">Toys & Games</option>
+              <select onChange={handleSelect} name="filter-style" className="select-nav select-small" value={selected}>
+                <option value="All">All</option>
+                <option value="Baby">Baby</option>
+                <option value="Beauty">Beauty</option>
+                <option value="Books">Books</option>
+                <option value="Fashion">Fashion</option>
+                <option value="Car & Motorbike">Car & Motorbike</option>
+                <option value="CDs & Vinyl">CDs & Vinyl</option>
+                <option value="Computers & Accessories">Computers & Accessories</option>
+                <option value="DVD & Blu-ray">DVD & Blu-ray</option>
+                <option value="Electronics & Photo">Electronics & Photo</option>
+                <option value="Garden & Outdoors">Garden & Outdoors</option>
+                <option value="Health & Personal care">Health & Personal care</option>
+                <option value="Home & Kitchen">Home & Kitchen</option>
+                <option value="Industrial & Scientific">Industrial & Scientific</option>
+                <option value="Large Appliances">Large Appliances</option>
+                <option value="Luggage & Travel Gear">Luggage & Travel Gear</option>
+                <option value="Musical Instruments">Musical Instruments</option>
+                <option value="Consoles & Video Games">Consoles & Video Games</option>
+                <option value="Pet Supplies">Pet Supplies</option>
+                <option value="Sports & Outdoors">Sports & Outdoors</option>
+                <option value="Stationary & Office Supplies">Stationary & Office Supplies</option>
+                <option value="Toys & Games">Toys & Games</option>
               </select>
               <input className='input-nav' type="text" placeholder='search' value={typed} onChange={handleChange} />
             </div>
@@ -171,29 +171,29 @@ function Navigation({ selected, typed, setSelected, setTyped }) {
               </NavDropdown>
             </Nav>
             <div className='flex-search' id='top-search'>
-              <select onChange={handleSelect} name="filter-style" className="select-big" value={selected}>
-                <option value="0">All</option>
-                <option value="1">Baby</option>
-                <option value="2">Beauty</option>
-                <option value="3">Books</option>
-                <option value="4">Fashion</option>
-                <option value="5">Car & Motorbike</option>
-                <option value="6">CDs & Vinyl</option>
-                <option value="7">Computers & Accessories</option>
-                <option value="8">DVD & Blu-ray</option>
-                <option value="9">Electronics & Photo</option>
-                <option value="10">Garden & Outdoors</option>
-                <option value="11">Health & Personal care</option>
-                <option value="12">Home & Kitchen</option>
-                <option value="13">Industrial & Scientific</option>
-                <option value="14">Large Appliances</option>
-                <option value="15">Luggage & Travel Gear</option>
-                <option value="16">Musical Instruments</option>
-                <option value="17">Consoles & Video Games</option>
-                <option value="18">Pet Supplies</option>
-                <option value="19">Sports & Outdoors</option>
-                <option value="20">Stationary & Office Supplies</option>
-                <option value="21">Toys & Games</option>
+              <select onChange={handleSelect} name="filter-style" className="select-nav select-big" value={selected}>
+                <option value="All">All</option>
+                <option value="Baby">Baby</option>
+                <option value="Beauty">Beauty</option>
+                <option value="Books">Books</option>
+                <option value="Fashion">Fashion</option>
+                <option value="Car & Motorbike">Car & Motorbike</option>
+                <option value="CDs & Vinyl">CDs & Vinyl</option>
+                <option value="Computers & Accessories">Computers & Accessories</option>
+                <option value="DVD & Blu-ray">DVD & Blu-ray</option>
+                <option value="Electronics & Photo">Electronics & Photo</option>
+                <option value="Garden & Outdoors">Garden & Outdoors</option>
+                <option value="Health & Personal care">Health & Personal care</option>
+                <option value="Home & Kitchen">Home & Kitchen</option>
+                <option value="Industrial & Scientific">Industrial & Scientific</option>
+                <option value="Large Appliances">Large Appliances</option>
+                <option value="Luggage & Travel Gear">Luggage & Travel Gear</option>
+                <option value="Musical Instruments">Musical Instruments</option>
+                <option value="Consoles & Video Games">Consoles & Video Games</option>
+                <option value="Pet Supplies">Pet Supplies</option>
+                <option value="Sports & Outdoors">Sports & Outdoors</option>
+                <option value="Stationary & Office Supplies">Stationary & Office Supplies</option>
+                <option value="Toys & Games">Toys & Games</option>
               </select>
               <input className='input-nav' type="text" placeholder='search' value={typed} onChange={handleChange} />
             </div>
@@ -226,29 +226,29 @@ function Navigation({ selected, typed, setSelected, setTyped }) {
           </Navbar >
           <div id='nav-bottom'>
             <div className='flex-search'>
-              <select onChange={handleSelect} name="filter-style" className="select-big" value={selected}>
-                <option value="0">All</option>
-                <option value="1">Baby</option>
-                <option value="2">Beauty</option>
-                <option value="3">Books</option>
-                <option value="4">Fashion</option>
-                <option value="5">Car & Motorbike</option>
-                <option value="6">CDs & Vinyl</option>
-                <option value="7">Computers & Accessories</option>
-                <option value="8">DVD & Blu-ray</option>
-                <option value="9">Electronics & Photo</option>
-                <option value="10">Garden & Outdoors</option>
-                <option value="11">Health & Personal care</option>
-                <option value="12">Home & Kitchen</option>
-                <option value="13">Industrial & Scientific</option>
-                <option value="14">Large Appliances</option>
-                <option value="15">Luggage & Travel Gear</option>
-                <option value="16">Musical Instruments</option>
-                <option value="17">Consoles & Video Games</option>
-                <option value="18">Pet Supplies</option>
-                <option value="19">Sports & Outdoors</option>
-                <option value="20">Stationary & Office Supplies</option>
-                <option value="21">Toys & Games</option>
+              <select onChange={handleSelect} name="filter-style" className="select-nav select-big" value={selected}>
+                <option value="All">All</option>
+                <option value="Baby">Baby</option>
+                <option value="Beauty">Beauty</option>
+                <option value="Books">Books</option>
+                <option value="Fashion">Fashion</option>
+                <option value="Car & Motorbike">Car & Motorbike</option>
+                <option value="CDs & Vinyl">CDs & Vinyl</option>
+                <option value="Computers & Accessories">Computers & Accessories</option>
+                <option value="DVD & Blu-ray">DVD & Blu-ray</option>
+                <option value="Electronics & Photo">Electronics & Photo</option>
+                <option value="Garden & Outdoors">Garden & Outdoors</option>
+                <option value="Health & Personal care">Health & Personal care</option>
+                <option value="Home & Kitchen">Home & Kitchen</option>
+                <option value="Industrial & Scientific">Industrial & Scientific</option>
+                <option value="Large Appliances">Large Appliances</option>
+                <option value="Luggage & Travel Gear">Luggage & Travel Gear</option>
+                <option value="Musical Instruments">Musical Instruments</option>
+                <option value="Consoles & Video Games">Consoles & Video Games</option>
+                <option value="Pet Supplies">Pet Supplies</option>
+                <option value="Sports & Outdoors">Sports & Outdoors</option>
+                <option value="Stationary & Office Supplies">Stationary & Office Supplies</option>
+                <option value="Toys & Games">Toys & Games</option>
               </select>
               <input className='input-nav' type="text" placeholder='search' value={typed} onChange={handleChange} />
             </div>

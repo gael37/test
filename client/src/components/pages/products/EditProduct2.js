@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { getToken, getPayload } from '../../../helpers/auth'
 
@@ -7,13 +7,20 @@ import Container from 'react-bootstrap/esm/Container'
 import Row from 'react-bootstrap/esm/Row'
 import Select from 'react-select'
 import { options } from '../../../helpers/constants'
-// s
-const ProductNew = () => {
+
+
+const EditProduct2 = () => {
 
   // ! State
 
   const [errors, setErrors] = useState(null)
   const [selectedImages, setSelectedImages] = useState([])
+  const [imagesCount, setImagesCount] = useState(0)
+  const [firstFormFieldsLoad, setFirstFormFieldsload] = useState(false)
+
+  const [selectValue, setSelectValue] = useState([])
+  const [categoriesArray, setCategoriesArray] = useState([])
+  const [selectArray, setSelectArray] = useState([])
 
   const [formFields, setFormFields] = useState({
     description: '',
@@ -23,22 +30,70 @@ const ProductNew = () => {
     weight: '',
     about: '',
     price: '',
+    categories: [],
   })
 
   const navigate = useNavigate()
-
   const currentUserId = getPayload().sub
   console.log('current user id: ', currentUserId)
-
-  const [categoriesArray, setCategoriesArray] = useState([])
-  let array = []
+  const categoriesArray1 = []
+  const categoriesArray2 = []
   let imagesString = ''
+  const a = useParams().productId
+  let categoriesArray2WithoutDup = []
+
 
 
   // ! Execution
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const { data } = await axios.get(`/api/products/${a}/`, {
+          headers: {
+            Authorization: `Bearer ${getToken()}`,
+          },
+        })
+        console.log('PRODUCT ON PAGE LOAD ⚱️', data)
+        setFormFields(data)
+        setFirstFormFieldsload(true)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    getProduct()
+  }, [])
+
+
+
+
+  useEffect(() => {
+    setImagesCount(formFields.images.split(' ').length)
+    setSelectedImages(formFields.images.split(' '))
+    console.log('CATEGORIES ON PRODUCT LOAD 𐩿:', formFields.categories)
+    console.log('IMAGES ON P~RODUCT LOAD 🏙️:', formFields.images)
+    setSelectValue((formFields.categories).map(({ name }) => ({ value: name, label: name })))
+    setCategoriesArray((formFields.categories).map(({ name }) => name))
+
+  }, [firstFormFieldsLoad])
+
+
+
+  useEffect(() => {
+    console.log('SELECT VALUE READY 👨🏻‍💻:', selectValue)
+    // categoriesArray1 = 
+  }, [selectValue])
+
+  useEffect(() => {
+    console.log('SELECTED IMAGES LOG 👨🏻‍💻:', selectedImages)
+    // categoriesArray1 = 
+  }, [selectedImages])
+
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     imagesString = selectedImages.join(' ')
+    console.log('categories before posting :', categoriesArray)
     const categoriesPKArray = categoriesArray.map(item => {
       if (item === 'Baby') {
         return 1
@@ -85,9 +140,11 @@ const ProductNew = () => {
       }
     }
     )
+    console.log('category array after attemting PK stuff :', categoriesPKArray)
     try {
       console.log('form fields', formFields)
-      await axios.post('/api/products/', { ...formFields, images: imagesString, owner: currentUserId, categories: categoriesPKArray }, {
+      // setCategoriesArray(selectArray.concat(categoriesArray))
+      await axios.put(`/api/products/${a}/`, { ...formFields, images: imagesString, owner: currentUserId, categories: categoriesPKArray }, {
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },
@@ -108,22 +165,26 @@ const ProductNew = () => {
   }
 
   const selectCategory = (e) => {
-    array = []
     console.log('e', e)
     for (let i = 0; i < e.length; i++) {
-      array.push(e[i].value)
+      categoriesArray2.push(e[i].value)
     }
-    setCategoriesArray(array)
+    console.log('category array 2: ', categoriesArray2)
+    categoriesArray2WithoutDup = Array.from(new Set(categoriesArray2))
+    console.log('fameux sans dup :', categoriesArray2WithoutDup)
+    setSelectValue((categoriesArray2WithoutDup).map((item) => ({ label: item, value: item })))
+    setCategoriesArray(categoriesArray2WithoutDup)
+    // setCategoriesArray(array)
   }
 
   // useEffect(() => {
-  //   console.log('categoriesArray', categoriesArray)
-  //   setFormFields({ ...formFields, categories: categoriesArray })
+  //   // console.log('categoriesArray', categoriesArray)
+  //   setFormFields({ ...formFields })
   // }, [categoriesArray])
 
   const onSelectFile = async (event) => {
-    const imagesArray = []
     // let imageString = ''
+    const imagesArray = []
     console.log(event.target.files)
     for (let i = 0; i < event.target.files.length; i++) {
       try {
@@ -151,14 +212,20 @@ const ProductNew = () => {
     // const imagesArray = selectedFilesArray.map((file) => {
     //   return URL.createObjectURL(file)
     // })
+
     setSelectedImages((previousImages) => previousImages.concat(imagesArray))
+    console.log('images array log :', imagesArray)
     // setFormFields({ ...formFields, images: imageString })
   }
 
   function deleteHandler(image) {
     setSelectedImages(selectedImages.filter((e) => e !== image))
-    URL.revokeObjectURL(image)
+    // URL.revokeObjectURL(image)
   }
+
+  // const showE = (e) => {
+  //   console.log('selecte E :', e.target)
+  // }
 
   return (
     <main className="form-page">
@@ -166,7 +233,7 @@ const ProductNew = () => {
         <Row>
           <div className='div-form col-10 offset-1 col-md-6 offset-md-3 col-lg-4 offset-lg-4'>
             <form className='form-perso' onSubmit={handleSubmit}>
-              <h1>New product</h1>
+              <h1>Edit Product Ad</h1>
               {/* Description */}
               <label htmlFor="name">Description<span>*</span></label>
               <input
@@ -198,15 +265,15 @@ const ProductNew = () => {
                 value={formFields.weight}
                 placeholder="Weight"
               />
-              {/* About */}
-              <label htmlFor="name">About</label>
+              {/* Brand */}
+              <label htmlFor="name">Brand</label>
               <input
                 className='form-input'
                 type="text"
-                name="about"
+                name="brand"
                 onChange={handleChange}
-                value={formFields.about}
-                placeholder="About"
+                value={formFields.brand}
+                placeholder="Brand"
               />
               {/* Price */}
               <label htmlFor="name">Price<span>*</span></label>
@@ -222,10 +289,24 @@ const ProductNew = () => {
               {/* Categories */}
               <div className='post-cat'>
                 <p>Categorize your ad:</p>
-                <Select className='select-input' options={options} isClearable={true} isMulti onChange={selectCategory} />
+                {formFields &&
+                  <Select value={selectValue} className='select-input' options={options} isClearable={true} isMulti onChange={selectCategory} />
+                }
               </div>
               {errors && errors.description && <small className='text-danger'>{errors.description}</small>}
               {/* Images */}
+              {/* <p>Images: {imagesCount}</p>
+              <div className='flex-images-pre'>
+                {formFields.images ?
+                  (formFields.images.split(' ')).map((image, index) => {
+                    return (
+                      <div key={index} className="profile-card-image bottom-images" style={{ backgroundImage: `url(${ image })` }}></div>
+                    )
+                  })
+                  :
+                  <p>none</p>
+                }
+              </div> */}
               <label>Upload images for your ad:</label>
               <section>
                 <label>
@@ -250,7 +331,7 @@ const ProductNew = () => {
                       </span>
                     </p>
                   ) : (
-                    <p>Image{selectedImages.length === 1 ? '' : 's'} uploaded! ✅</p>
+                    <p>Number of images: OK!</p>
                   ))}
 
                 <div className="images">
@@ -286,4 +367,4 @@ const ProductNew = () => {
 
 }
 
-export default ProductNew
+export default EditProduct2

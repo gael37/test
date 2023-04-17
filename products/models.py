@@ -4,17 +4,17 @@ import datetime
 
 
 class Product(models.Model):
-    description = models.TextField(max_length=1000)
-    price = models.CharField(max_length=15)
-    image = models.CharField(max_length=10000)
+    description = models.TextField(max_length=10000)
+    price = models.CharField(max_length=150)
+    images = models.CharField(max_length=10000)
     created_at = models.DateTimeField(
         auto_now_add=True)
     dimensions = models.CharField(
-        max_length=50, default=None, blank=True, null=True)
+        max_length=500, default=None, blank=True, null=True)
     weight = models.CharField(
-        max_length=50, default=None, blank=True, null=True)
+        max_length=500, default=None, blank=True, null=True)
     about = models.CharField(
-        max_length=1000, default=None, blank=True, null=True)
+        max_length=10000, default=None, blank=True, null=True)
     owner = models.ForeignKey(
         'jwt_auth.User',
         related_name='products',
@@ -24,6 +24,13 @@ class Product(models.Model):
         'categories.Category',
         related_name="products"
     )
+    # likers = models.ManyToManyField(
+    #     'jwt_auth.User',
+    #     related_name="products_liked",
+    #     default=None,
+    #     blank=True,
+    #     null=True
+    # )
 
     def __str__(self):
         return f"{self.description}"

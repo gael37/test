@@ -71,7 +71,7 @@ $senary: #487dba;
   justify-content: space-between;
 }
 
-select {
+.select-nav {
   height: 40px;
   border-top-left-radius: 7px;
   border-bottom-left-radius: 7px;
@@ -86,7 +86,7 @@ select {
   border-right: 1px solid grey;
 }
 
-input {
+.input-nav {
   height: 40px;
   // border-top-right-radius: 7px;
   // border-bottom-right-radius: 7px;
@@ -267,7 +267,7 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 300px;
+  width: 350px;
   margin: 10px;
   border: 7px solid $primary;
   // border-radius: 10px;
@@ -328,7 +328,7 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 300px;
+  width: 350px;
   margin: 10px;
   border: 7px solid $primary;
   // border-radius: 10px;
@@ -1093,8 +1093,8 @@ h1 {
 }
 
 .single-card-image {
-  height: 500px;
-  width: 700px;
+  // height: 500px;
+  // width: 700px;
 }
 
 .profile-card-title {
@@ -1144,8 +1144,8 @@ h1 {
   }
 
   .single-card-image {
-    height: 350px;
-    width: 500px;
+    // height: 350px;
+    // width: 500px;
     background-size: contain;
     background-repeat: no-repeat;
     margin: 0 auto;
@@ -1265,8 +1265,8 @@ h1 {
   }
 
   .single-card-image {
-    height: 300px;
-    width: 400px;
+    // height: 300px;
+    // width: 400px;
     background-size: contain;
     background-repeat: no-repeat;
     margin: 0 auto;
@@ -1331,8 +1331,8 @@ h1 {
   }
 
   .single-card-image {
-    height: 200px;
-    width: 300px;
+    // height: 200px;
+    // width: 300px;
     background-size: contain;
     background-repeat: no-repeat;
     margin: 0 auto;
@@ -1451,12 +1451,15 @@ h1 {
     width: 150px;
   }
 
-  // .profile-pic {
-  //   // width: 70px;
-  //   // height: 150px;
-  //   margin-top: 20px;
-  //   margin-bottom: 10px;
-  // }
+  .profile-pic {
+    display: block;
+    width: 50px;
+    height: 100px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+
+
+  }
 
   .profile-card {
     height: 330px;
@@ -1522,8 +1525,8 @@ h1 {
   }
 
   .single-card-image {
-    height: 200px;
-    width: 300px;
+    height: 100px;
+    width: 100px;
     background-size: contain;
     background-repeat: no-repeat;
     margin: 0 auto;
@@ -1695,8 +1698,8 @@ h1 {
   transform: scale(1.2);
 }
 
-input,
-select {
+.form-input,
+.form-select {
   width: 300px;
 }
 

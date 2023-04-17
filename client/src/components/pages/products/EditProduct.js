@@ -19,15 +19,15 @@ import { getToken } from '../../../helpers/auth'
 
 
 // Custom Components
-import ProductFormEdit from './ProductFormEdit'
+// import ProductFormEdit from './ProductFormEdit'
 
 
-const EditProduct = ({ selectedImages, setSelectedImages }) => {
+const EditProduct = () => {
 
   // ! Location Variables
   const navigate = useNavigate()
 
-  const [imagesCount, setImagesCount] = useState(0)
+  // const [imagesCount, setImagesCount] = useState(0)
 
 
   getToken()
@@ -35,11 +35,12 @@ const EditProduct = ({ selectedImages, setSelectedImages }) => {
   const currentUserId = currentUserPayload.sub
   console.log('id', currentUserId)
 
-
+  let imagesString
+  let imagesCount
   // ! State
   const [formFields, setFormFields] = useState({
     description: '',
-    image: '',
+    images: '',
     brand: '',
     price: '',
     about: '',
@@ -69,7 +70,7 @@ const EditProduct = ({ selectedImages, setSelectedImages }) => {
 
   useEffect(() => {
     console.log('pre existing images :', formFields.image)
-    setImagesCount(formFields.image.split(' ').length)
+    // setImagesCount(formFields.image.split(' ').length)
   }, [formFields])
 
 
@@ -83,13 +84,13 @@ const EditProduct = ({ selectedImages, setSelectedImages }) => {
       console.log('GET TOKEN ->', getToken())
       console.log('form fields', formFields)
       setFormFields({ ...formFields, image: formFields.image + imageString })
-      const { data } = await axios.put(`/api/products/${a}/`, { ...formFields, image: formFields.image + imageString, owner: currentUserId }, {
+      const { data } = await axios.put(`/api/products/${a}/`, { ...formFields, images: formFields.images + ' ' + imagesString, owner: currentUserId, categories: categoriesArray }, {
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },
       })
       console.log('SUCCESS ->', data._id)
-      navigate(`/products/${a}/1`)
+      navigate(`/products/${a}/`)
     } catch (err) {
       console.log(err.response.data)
       setErrors(err.response.data)
@@ -107,11 +108,11 @@ const EditProduct = ({ selectedImages, setSelectedImages }) => {
 
 
 
-  useEffect(() => {
-    console.log('form fields images: ', formFields.image)
-    console.log('images count', imagesCount)
-    setSelectedImages([])
-  }, [formFields])
+  // useEffect(() => {
+  //   console.log('form fields images: ', formFields.image)
+  //   console.log('images count', imagesCount)
+  //   setSelectedImages([])
+  // }, [formFields])
 
   let imageString
 
@@ -143,13 +144,13 @@ const EditProduct = ({ selectedImages, setSelectedImages }) => {
     const imagesArray = selectedFilesArray.map((file) => {
       return URL.createObjectURL(file)
     })
-    setSelectedImages((previousImages) => previousImages.concat(imagesArray))
+    // setSelectedImages((previousImages) => previousImages.concat(imagesArray))
   }
 
-  function deleteHandler(image) {
-    setSelectedImages(selectedImages.filter((e) => e !== image))
-    URL.revokeObjectURL(image)
-  }
+  // function deleteHandler(image) {
+  //   setSelectedImages(selectedImages.filter((e) => e !== image))
+  //   URL.revokeObjectURL(image)
+  // }
 
   const handleChange = (e) => {
     console.log(`${e.target.name}: ${e.target.value}`)
@@ -275,8 +276,8 @@ const EditProduct = ({ selectedImages, setSelectedImages }) => {
               {errors && errors.description && <small className='text-danger'>{errors.description}</small>}
               <p>Images: {imagesCount}</p>
               <div className='flex-images-pre'>
-                {formFields.image ?
-                  (formFields.image.split(' ')).map((image, index) => {
+                {formFields.images ?
+                  (formFields.images.split(' ')).map((image, index) => {
                     return (
                       <div key={index} className="profile-card-image bottom-images" style={{ backgroundImage: `url(${image})` }}></div>
                     )
@@ -301,7 +302,7 @@ const EditProduct = ({ selectedImages, setSelectedImages }) => {
                 />
               </label>
               <div className="images">
-                {selectedImages &&
+                {/* {selectedImages &&
                   selectedImages.map((image, index) => {
                     return (
                       <div key={image}>
@@ -314,7 +315,7 @@ const EditProduct = ({ selectedImages, setSelectedImages }) => {
 
                       </div>
                     )
-                  })}
+                  })} */}
               </div>
 
               {/* <ImageUpload

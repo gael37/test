@@ -1,9 +1,11 @@
 import axios from 'axios'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 const ImagesUploadTest = ({ formFields, setFormFields }) => {
 
-  const handleChange = async (event) => {
+  const [selectedImages, setSelectedImages] = useState([])
+
+  const handleImages = async (event) => {
     let imageString = ''
     console.log(event.target.files)
     for (let i = 0; i < event.target.files.length; i++) {
@@ -39,7 +41,7 @@ const ImagesUploadTest = ({ formFields, setFormFields }) => {
             <input
               className="input"
               type="file"
-              onChange={handleChange}
+              onChange={handleImages}
               multiple
             // accept="image/png , image/jpeg, image/webp"
             // multiple='true'
@@ -49,7 +51,7 @@ const ImagesUploadTest = ({ formFields, setFormFields }) => {
           <input
             className="input"
             type="file"
-            onChange={handleChange}
+            onChange={handleImages}
             multiple
           />
         }

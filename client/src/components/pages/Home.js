@@ -13,6 +13,8 @@ import { calcDistance } from '../../helpers/functions'
 
 const Home = ({ selected, typed, setSelected, setTyped }) => {
 
+  const [liked, setLiked] = useState(false)
+  const [post, setPost] = useState(0)
   const [products, setProducts] = useState([])
   const [filteredProducts, setFilteredProducts] = useState([])
   const [errors, setErrors] = useState(false)
@@ -200,27 +202,32 @@ const Home = ({ selected, typed, setSelected, setTyped }) => {
     console.log(imagesArray)
   }, [filteredProducts])
 
+  const putUserData = async () => {
+    try {
+      const { data } = await axios.put(`api/auth/${currentUserId}/`, userData, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      })
+      console.log('user data', data)
+    } catch (err) {
+      console.log(err)
+      setErrors(true)
+    }
+  }
+
+  // handleLike = () => {
+  //   setUserData({ ...userData, likes: Array.from(new Set(userData.likes.concat(products.id))})
+  //   setPost(post + 1)
+  // }
+
+  // useEffect(() => {
+  //   putUserData()
+  // }, [post])
 
   return (
     <main className="profile-page-wrapper">
-      {/* <div className="filters-div">
-        <input onChange={handleSearch} className="home-page-input" placeholder="🔎search" value={search} />
-        <select onChange={filterProducts} name="filter-style" id="filter-style">
-          <option value="All">All</option>
-          <option value="5">Tools</option>
-          <option value="11">Garden</option>
-          <option value="3">Leisure</option>
-          <option value="2">Kitchen</option>
-          <option value="4">Decoration</option>
-          <option value="6">Cars</option>
-          <option value="7">Motorbikes</option>
-          <option value="8">Clothes</option>
-          <option value="9">Shoes</option>
-          <option value="10">Makeup</option>
-          <option value="12">Others</option>
-          <option value="1">Sport</option>
-        </select>
-      </div> */}
+
       {filteredProducts.length > 0 &&
         <div className='profile-row'>
           {filteredProducts.map(product => {
@@ -231,7 +238,7 @@ const Home = ({ selected, typed, setSelected, setTyped }) => {
 
 
                   <div className="buffer">
-                    <div className="profile-card-image" style={{ backgroundImage: `url(${product.image.split(' ')[0]})` }}></div>
+                    <div className="profile-card-image" style={{ backgroundImage: `url(${product.images.split(' ')[0]})` }}></div>
 
                     {/* {(product.image.split(' ')).map((image, index) => {
                       return (
@@ -252,6 +259,12 @@ const Home = ({ selected, typed, setSelected, setTyped }) => {
                       </>
                     }
                     <p className='profile-card-price'>£{product.price}</p>
+                    {/* {liked ?
+                      <button onClick={handleLike}>♥️</button>
+                      :
+                      <button onClick={handleLike}>♡</button>
+                    } */}
+                    {/* <button onClick={handleLike}>♥️</button> */}
                   </div>
                 </Link>
               </div>

@@ -3,7 +3,7 @@
   "model": "jwt_auth.user",
   "pk": 1,
   "fields": {
-    "password": "pbkdf2_sha256$390000$gtMR3yilelmrz0xaMHblET$IictRd3+yUrHXcxuPnMR4WAfNNajFTCLk0Z4YiYzWxk=",
+    "password": "pbkdf2_sha256$390000$xETqos3giKNAE1ZhUtXGfU$/RuIrvwru4CtEQ/OVtc22u/l9pFqrDYd+Ekt/pfOM/M=",
     "last_login": null,
     "is_superuser": false,
     "username": "gael",
@@ -192,6 +192,28 @@
     "profile_image": null,
     "postcode": "L2 3SW",
     "image": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1681404250/bargain-api/o3bzryb90frhexsodih8.jpg",
+    "likes": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 11,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$BvoaJkr9zTeqWmUG0wv2Bd$X2cf/2ZwHy7xBdgPtlHWLkxDp4t/TMt5JuIs+j+csGI=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Mathilde",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-04-17T11:00:08.111Z",
+    "email": "mathilde@email.com",
+    "profile_image": null,
+    "postcode": "CT16 1Ds",
+    "image": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1681729187/bargain-api/qd2dojri5ogsbk87buk0.jpg",
     "likes": null,
     "groups": [],
     "user_permissions": []

@@ -106,7 +106,7 @@ const ProductSingle = () => {
         const { data } = await axios.get(`/api/products/${productId}/`)
         console.log('products on page render', data)
         setProduct(data)
-        setBigImage(product.image.split(' ')[0])
+        setBigImage(product.images.split(' ')[0])
       } catch (err) {
         console.log(err)
         setErrors(true)
@@ -238,12 +238,12 @@ const ProductSingle = () => {
                   {bigImage ?
                     <div className="profile-card-image top-image" style={{ backgroundImage: `url(${bigImage})` }}></div>
                     :
-                    <div className="profile-card-image top-image" style={{ backgroundImage: `url(${product.image.split(' ')[0]})` }}></div>
+                    <div className="profile-card-image top-image" style={{ backgroundImage: `url(${product.images.split(' ')[0]})` }}></div>
 
                   }
                   <div className='bottom-images-flex'>
                     <>
-                      {(product.image.split(' ')).map((image, index) => {
+                      {(product.images.split(' ')).map((image, index) => {
                         return (
                           <div key={index} name={image} onMouseEnter={getBigger} onMouseLeave={getSmaller} onClick={() => swapImage(image)} className="profile-card-image bottom-images" style={{ backgroundImage: `url(${image})` }}></div>
                         )
@@ -266,6 +266,9 @@ const ProductSingle = () => {
                   {(product.about) &&
                     <p className='single-card-description-full'><strong>•About:</strong> {product.about}</p>
                   }
+                  {(product.brand) &&
+                    <p className='single-card-description-full'><strong>•Brand:</strong> {product.brand}</p>
+                  }
 
                   {postedAd() ?
                     <>
@@ -283,6 +286,9 @@ const ProductSingle = () => {
 
 
                     </>
+                  }
+                  {product &&
+                    <p>Categories: {product.categories[0].name}</p>
                   }
                 </div>
               </div>

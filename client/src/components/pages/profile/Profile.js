@@ -14,8 +14,8 @@ const Profile = () => {
 
   const [profileData, setProfileData] = useState(null)
   const [errors, setErrors] = useState(false)
-  const [messagesReceived, setMessagesReceived] = useState([])
-  const [messagesSent, setMessagesSent] = useState([])
+  // const [messagesReceived, setMessagesReceived] = useState([])
+  // const [messagesSent, setMessagesSent] = useState([])
 
   const payload = getPayload()
   const currentUserId = payload.sub
@@ -32,8 +32,8 @@ const Profile = () => {
         })
         console.log('data', data)
         setProfileData(data)
-        setMessagesReceived(data.commentsReceived)
-        setMessagesSent(data.commentsSent)
+        // setMessagesReceived(data.commentsReceived)
+        // setMessagesSent(data.commentsSent)
         // setMessagesArray(data.products.comments)
       } catch (err) {
         console.log(err)
@@ -43,26 +43,26 @@ const Profile = () => {
     getProfile()
   }, [])
 
-  useEffect(() => {
-    console.log('messages received', messagesReceived)
-  }, [messagesReceived])
+  // useEffect(() => {
+  //   console.log('messages received', messagesReceived)
+  // }, [messagesReceived])
 
 
 
-  const [messageField, setMessageField] = useState({
-    text: '',
-  })
+  // const [messageField, setMessageField] = useState({
+  //   text: '',
+  // })
 
 
   const handleChange = (e) => {
     const updatedReviewField = {
-      ...messageField,
+      // ...messageField,
       [e.target.name]: e.target.value,
       commentOwner: currentUserId,
       // productowner: message.commentOwner.username
       // productOwner: messagesReceived.owner.id,
     }
-    setMessageField(updatedReviewField)
+    // setMessageField(updatedReviewField)
     if (errors) setErrors('')
   }
 
@@ -70,23 +70,23 @@ const Profile = () => {
 
 
 
-  const handleClick = async (e) => {
-    console.log('message field', messageField)
-    try {
-      const { data } = await axios.post('/api/comments/', { ...messageField }, {
-        headers: {
-          Authorization: `Bearer ${getToken()}`,
-        },
-      })
-      setMessageField({
-        text: 'Message sent!',
-      })
-      console.log('review SUCCESS ->', data)
-    } catch (err) {
-      console.log('review FAIL ->', err)
-      setErrors(err.response.data)
-    }
-  }
+  // const handleClick = async (e) => {
+  //   // console.log('message field', messageField)
+  //   try {
+  //     const { data } = await axios.post('/api/comments/', { ...messageField }, {
+  //       headers: {
+  //         Authorization: `Bearer ${getToken()}`,
+  //       },
+  //     })
+  //     setMessageField({
+  //       text: 'Message sent!',
+  //     })
+  //     console.log('review SUCCESS ->', data)
+  //   } catch (err) {
+  //     console.log('review FAIL ->', err)
+  //     setErrors(err.response.data)
+  //   }
+  // }
 
 
   const handleClickDelete = () => {
@@ -101,9 +101,9 @@ const Profile = () => {
   //         Authorization: `Bearer ${getToken()}`,
   //       },
   //     })
-  //     setMessageField({
-  //       text: 'Ad deleted!',
-  //     })
+  //     // setMessageField({
+  //     //   text: 'Ad deleted!',
+  //     // })
   //     navigate('/delete-account')
   //     console.log('delete SUCCESS ->', data)
   //   } catch (err) {
@@ -111,6 +111,9 @@ const Profile = () => {
   //     setErrors(err.response.data)
   //   }
   // }
+  const handleClickEdit = () => {
+    navigate(`/edit-profile/${currentUserId}`)
+  }
 
 
 
@@ -128,6 +131,7 @@ const Profile = () => {
           }
           <p className='profile-details'>username: <span id='span-username'>{profileData.username}</span></p>
           <p className='profile-details'>e-mail: <span id='span-email'>{profileData.email}</span></p>
+          <p className='profile-details'>Postcode: <span id='span-email'>{profileData.postcode}</span></p>
           <hr></hr>
           <div className='profile-link-flex'>
             <h2 className='profile-title'>My ads</h2>
@@ -151,9 +155,9 @@ const Profile = () => {
                       <Link className='bootstrap-link' to={`/products/${product.id}/${profileData.postcode}`}>
                         <div className="buffer">
 
-                          <div className="profile-card-image" style={{ backgroundImage: `url(${product.image})` }}></div>
+                          <div className="profile-card-image" style={{ backgroundImage: `url(${product.images.split(' ')[0]})` }}></div>
 
-                          <p className='profile-card-title'>{product.name}</p>
+                          {/* <p className='profile-card-title'>{product.name}</p> */}
                           <p className='profile-card-description'>{product.description}</p>
 
                           <p className='profile-card-date'>Posted on: {product.created_at.toString().split('T').slice(0, 1).join()}</p>
@@ -167,7 +171,7 @@ const Profile = () => {
               )
             }
           </div>
-          <h2 className='profile-title'>Messages received</h2>
+          {/* <h2 className='profile-title'>Messages received</h2>
           {messagesReceived.length < 1 &&
             <p className='profile-details'>You have not received any messages.</p>
           }
@@ -205,8 +209,10 @@ const Profile = () => {
                 )
               }
               )
-            }
-          </div>
+            } */}
+          {/* </div> */}
+          {/* <Link as={Link} className="btn-post-delete2" to='/edit-profile/${currentUserId}/'>EDIT MY PROFILE</Link> */}
+          <button className="btn-post-delete2" onClick={handleClickEdit}>EDIT MY ACCOUNT</button>
           <button className="btn-post-delete2" onClick={handleClickDelete}>DELETE MY ACCOUNT</button>
         </>
         :

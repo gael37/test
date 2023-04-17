@@ -1,9 +1,6 @@
-// Bootstrap Components
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
-// import ImagesUploadTest from '../../ImagesUploadTest'
-// import ImagesUpload from '../../ImagesUpload'
-// import ImageUpload from './ImageUpload'
+
 import axios from 'axios'
 
 import React, { useEffect } from 'react'

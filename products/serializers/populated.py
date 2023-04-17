@@ -10,3 +10,4 @@ class PopulatedProductSerializer(ProductSerializer):
     owner = UserSerializer()
     categories = CategorySerializer(many=True)
     comments = PopulatedCommentSerializer(many=True)
+    # likers = UserSerializer()

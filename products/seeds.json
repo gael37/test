@@ -1,0 +1,19 @@
+[
+{
+  "model": "products.product",
+  "pk": 12,
+  "fields": {
+    "description": "Anastasia Beverly Hills Norvina Eye Shadow Palette",
+    "price": "29.99",
+    "images": "https://res.cloudinary.com/dsrdfnxit/image/upload/v1681729482/bargain-api/plcatl1zrdwclra5mjwv.webp https://res.cloudinary.com/dsrdfnxit/image/upload/v1681729483/bargain-api/rseeunjlmubrnsnakoze.webp https://res.cloudinary.com/dsrdfnxit/image/upload/v1681729487/bargain-api/tee9cmavq5sajphmubv6.webp https://res.cloudinary.com/dsrdfnxit/image/upload/v1681729495/bargain-api/jqql8yclp0cknzopbf2w.webp",
+    "created_at": "2023-04-17T11:07:02.524Z",
+    "dimensions": "",
+    "weight": "0.5 Pounds",
+    "about": "Anastasia Beverly Hills NORVINA Pro Pigment Palette Vol. 1, for face and body, is a professional-grade artistry palette featuring 25 deluxe High-performance shades with maximum payoff—carefully curated by Norvina herself Expand NORVINA collection with this pro palette and create most artistic makeup looks",
+    "owner": 11,
+    "categories": [
+      2
+    ]
+  }
+}
+]
